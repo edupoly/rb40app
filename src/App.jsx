@@ -1,9 +1,17 @@
 
+import First from "./First";
+import { ccontext } from "./ComContext";
+
 function App() {
+  console.log(ccontext)
+  var ob1 = {firstname:"sameer"}
   return (
-    <div className="App">
-      <h1>Welcome to Edupoly</h1>
-    </div>
+    <ccontext.Provider value={ob1}>
+      <div className='border border-2 border-info p-2 m-2'>
+        <h1>Welcome to Edupoly</h1>
+        <First></First>
+      </div>
+    </ccontext.Provider>
   );
 }
 
