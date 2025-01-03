@@ -1,16 +1,12 @@
-import Counter from "./Counter";
-import Countries from "./Countries";
-import Todolist from "./Todolist";
-
+import {  Outlet } from "react-router-dom";
+import Navbar from "./components/Navbar";
 
 function App() {
-
   return (
     <div className="App">
       <h1>Welcome to Edupoly</h1>
-      <Counter></Counter>
-      <Todolist></Todolist>
-      <Countries></Countries>
+      <Navbar></Navbar>
+      <Outlet></Outlet>
     </div>
   );
 }

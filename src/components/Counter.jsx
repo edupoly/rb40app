@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { decCounter, incCounter } from './store/actions/counter.actions'
+import { decCounter, incCounter } from '../store/actions/counter.actions'
 function Counter(props) {
   useEffect(()=>{console.log("Counter")})
   return (

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { getAllCountries } from './store/actions/countries.action'
+import { getAllCountries } from '../store/actions/countries.action'
+
 function Countries(props) {
     console.log(props)
     useEffect(()=>{

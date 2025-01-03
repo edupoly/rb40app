@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react'
 import { connect } from 'react-redux'
-import { addTodoItem } from './store/actions/todo.action'
+import { addTodoItem } from '../store/actions/todo.action'
 function Todolist(props) {
   useEffect(()=>{console.log("Todolist")})
     
