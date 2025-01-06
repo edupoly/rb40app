@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let ar = [12,49,28]
+
+        // Object.seal(ar)
+
+        Object.freeze(ar)
+
+        // ar.push(90)
+
+        ar[1]=555;
+
+        // ar = [...ar,99]
+        
+        console.log(ar)
+    </script>
+</body>
+</html>
