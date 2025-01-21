@@ -1,15 +1,12 @@
+import EmployeeList from "./Employeelist";
+
 
 function App() {
   return (
     <div className="App">
-      <h1>Welcome to Edupoly</h1>
-      <button className="btn btn-primary">Primary Button</button>
-      <button className="btn btn-secondary">Secondary Button</button>
-      <button className="btn btn-danger">Danger CLICK</button>
-      <button className="btn btn-success">Success CLICK</button>
-      <button className="btn btn-info">Info CLICK</button>
-      <button className="btn btn-dark">Dark CLICK</button>
-      <button className="btn btn-light">Light CLICK</button>
+      <h1>ReactJS Training in Hyderabad at Edupoly</h1>
+      <h2>useMemo based performance imporovement</h2>
+      <EmployeeList></EmployeeList>
     </div>
   );
 }
