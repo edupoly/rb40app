@@ -1,6 +1,5 @@
 import EmployeeList from "./Employeelist";
 
-
 function App() {
   return (
     <div className="App">
