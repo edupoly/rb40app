@@ -3,7 +3,8 @@ import { useAddNewProductMutation, useDeleteProductMutation, useGetAllProductsQu
 
 function Products() {
 
-    var {isLoading,data}=useGetAllProductsQuery();
+    var {isLoading,data,error}=useGetAllProductsQuery();
+    console.log("error::",error)
     var [getAllProducts,x,y]=useLazyGetAllProductsQuery()
     var [editFlag,setEdit]=useState(null)
     useEffect(()=>{console.log("ashd:",x,y)},[x.status])
@@ -56,8 +57,11 @@ function Products() {
                 (isLoading || x.status==='pending') && (<img src="https://media3.giphy.com/media/xTk9ZvMnbIiIew7IpW/giphy.gif?cid=6c09b9528o3c062vpymz64sgq7xqg0obcy1vyt65t28rhjeu&ep=v1_gifs_search&rid=giphy.gif&ct=g"/>)
             }
             {
-                isLoading===false && (
-                    data.map((product)=>{
+                 error && <b className='text-danger'>{error?.error}</b>
+            }
+            {
+                isLoading && (
+                    data?.map((product)=>{
                         return  <li className='p-2'>
                                     {product.title}
                                     <button onClick={()=>{delProd(product.id)}}>Delete</button>
