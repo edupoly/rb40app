@@ -7,17 +7,23 @@ function Todolist() {
     var dispatch = useDispatch();
     var [newtodo,setNewTodo]=useState("")
   return (
-    <div className='border border-2 p-2 m-2'>
-        <h3>Todolist</h3>
-        <input type="text" onChange={(e)=>{setNewTodo(e.target.value)}}/>
-        <button onClick={()=>{dispatch(addTodo(newtodo))}}>Add Todo</button>
-        <ul>
-            {
-                todos?.map((t)=>{
-                    return <li>{t}</li>
-                })
-            }
-        </ul>
+    <div className='p-3'>
+        <div className='border border-2 p-4 m-2 shadow-sm w-50 mx-auto rounded'>
+            <h3 className='text-center'>Todolist</h3>
+            <div className='d-flex justify-content-center align-items-center flex-column'>
+                <div className='d-flex mb-3'>
+                    <input type="text" onChange={(e)=>{setNewTodo(e.target.value)}} className='form-control w-50'/>
+                    <button onClick={()=>{dispatch(addTodo(newtodo))}} className='btn btn-primary ms-2'>Add Todo</button>
+                </div>
+                <div>
+                    {
+                        todos?.map((t)=>{
+                            return <p>{t}</p>
+                        })
+                    }
+                </div>
+            </div>
+        </div>
     </div>
   )
 }

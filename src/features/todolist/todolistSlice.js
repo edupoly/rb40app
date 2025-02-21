@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const todolistSlice = createSlice({
     name:"TodolistSLS",
     initialState:{
-        todos:['get house','make money']
+        todos:['Get house','Make money']
     },
     reducers:{
         addTodo:(state,action)=>{

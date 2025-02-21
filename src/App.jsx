@@ -1,14 +1,11 @@
-import Counter from "./features/counter/Counter";
-import Products from "./features/products/Products";
-import Todolist from "./features/todolist/Todolist";
+import { Outlet } from "react-router-dom";
+import Navbar from "./features/components/Navbar";
 
 function App() {
   return (
     <div className="App">
-      <h1>Welcome to Edupoly</h1>
-      <Products></Products>
-      <Todolist></Todolist>
-      <Counter></Counter>
+      <Navbar/>
+      <Outlet/>
     </div>
   );
 }

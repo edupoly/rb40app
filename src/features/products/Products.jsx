@@ -40,36 +40,40 @@ function Products() {
         })
     }
     return (
-        <div className='border border-2 p-2 m-2'>
-            <h1>Products</h1>
-            <div>
-                <input type="text" value={newProduct.title} name="title" placeholder='title' onChange={(e)=>{setNewProduct({...newProduct,title:e.target.value})}}/><br/>
-                <input type="text" value={newProduct.description} name="description" placeholder='description' onChange={(e)=>{setNewProduct({...newProduct,description:e.target.value})}}/><br/>
-                <input type="text" value={newProduct.price} name="price" placeholder='price' onChange={(e)=>{setNewProduct({...newProduct,price:e.target.value})}}/><br/>
-                <input type="text" value={newProduct.category} name="category" placeholder='category' onChange={(e)=>{setNewProduct({...newProduct,category:e.target.value})}}/><br/>
-                <input type="text" value={newProduct.image} name="image" placeholder='image' onChange={(e)=>{setNewProduct({...newProduct,image:e.target.value})}}/><br/>
-                {editFlag ?? (<button onClick={()=>{addNewProd()}}>Add New Product</button>)}
-                {editFlag && (<button onClick={()=>{updateProduct()}}>Update Product</button>)}
-                
-                
+        <div className="row justify-content-center" style={{ marginTop: '30px' }}>
+            <div className="col-12 col-sm-8 col-md-6 col-lg-8">
+                <div className='border border-2 p-4 rounded shadow-sm'>
+                    <h1 className="text-center mb-4">Products</h1>
+                    <div>
+                        <input type="text" value={newProduct.title} name="title" placeholder='Title' onChange={(e)=>{setNewProduct({...newProduct,title:e.target.value})}} className='form-control p-2 '/><br/>
+                        <input type="text" value={newProduct.description} name="description" placeholder='Description' onChange={(e)=>{setNewProduct({...newProduct,description:e.target.value})}} className='form-control p-2' /><br/>
+                        <input type="text" value={newProduct.price} name="price" placeholder='Price' onChange={(e)=>{setNewProduct({...newProduct,price:e.target.value})}} className='form-control p-2' /><br/>
+                        <input type="text" value={newProduct.category} name="category" placeholder='Category' onChange={(e)=>{setNewProduct({...newProduct,category:e.target.value})}} className='form-control p-2' /><br/>
+                        <input type="text" value={newProduct.image} name="image" placeholder='Image' onChange={(e)=>{setNewProduct({...newProduct,image:e.target.value})}} className='form-control p-2' /><br/>
+                        {editFlag ?? (<button onClick={()=>{addNewProd()}} className='btn btn-outline-success'>Add New Product</button>)}
+                        {editFlag && (<button onClick={()=>{updateProduct()}}>Update Product</button>)}
+                    </div>
+                    <div>
+                        {
+                            (isLoading || x.status==='pending') && (<img src="https://media3.giphy.com/media/xTk9ZvMnbIiIew7IpW/giphy.gif?cid=6c09b9528o3c062vpymz64sgq7xqg0obcy1vyt65t28rhjeu&ep=v1_gifs_search&rid=giphy.gif&ct=g"/>)
+                        }
+                        {
+                            error && <b className='text-danger'>{error?.error}</b>
+                        }
+                    </div>
+                </div>
+                {
+                    isLoading && (
+                        data?.map((product)=>{
+                            return  <li className='p-2'>
+                                        {product.title}
+                                        <button onClick={()=>{delProd(product.id)}}>Delete</button>
+                                        <button onClick={()=>{editProduct(product)}}>Edit</button>
+                                    </li>
+                        })
+                    )
+                }
             </div>
-            {
-                (isLoading || x.status==='pending') && (<img src="https://media3.giphy.com/media/xTk9ZvMnbIiIew7IpW/giphy.gif?cid=6c09b9528o3c062vpymz64sgq7xqg0obcy1vyt65t28rhjeu&ep=v1_gifs_search&rid=giphy.gif&ct=g"/>)
-            }
-            {
-                 error && <b className='text-danger'>{error?.error}</b>
-            }
-            {
-                isLoading && (
-                    data?.map((product)=>{
-                        return  <li className='p-2'>
-                                    {product.title}
-                                    <button onClick={()=>{delProd(product.id)}}>Delete</button>
-                                    <button onClick={()=>{editProduct(product)}}>Edit</button>
-                                </li>
-                    })
-                )
-            }
         </div>
     )
 }
