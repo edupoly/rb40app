@@ -4,7 +4,7 @@ import { useAddNewProductMutation, useDeleteProductMutation, useGetAllProductsQu
 function Products() {
 
     var {isLoading,data,error}=useGetAllProductsQuery();
-    console.log("error::",error)
+    console.log(data)
     var [getAllProducts,x,y]=useLazyGetAllProductsQuery()
     var [editFlag,setEdit]=useState(null)
     useEffect(()=>{console.log("ashd:",x,y)},[x.status])
@@ -19,9 +19,11 @@ function Products() {
     var [addNewProductFn]=useAddNewProductMutation()
     var [deleteProductFn]=useDeleteProductMutation()
     var [updateProductFn] = useUpdateProductMutation()
-    function addNewProd(){
+    
+    function addNewProd(e){
         addNewProductFn(newProduct).then((res)=>{
             getAllProducts();
+             e.target.value=""
         })
     }
     function delProd(id){
@@ -33,10 +35,11 @@ function Products() {
         setEdit(true)
         setNewProduct({...product})
     }
-    function updateProduct(){
+    function updateProduct(e){
         updateProductFn(newProduct).then(()=>{
             getAllProducts();
             setEdit(null)
+            e.target.value=""
         })
     }
     return (
@@ -50,8 +53,8 @@ function Products() {
                         <input type="text" value={newProduct.price} name="price" placeholder='Price' onChange={(e)=>{setNewProduct({...newProduct,price:e.target.value})}} className='form-control p-2' /><br/>
                         <input type="text" value={newProduct.category} name="category" placeholder='Category' onChange={(e)=>{setNewProduct({...newProduct,category:e.target.value})}} className='form-control p-2' /><br/>
                         <input type="text" value={newProduct.image} name="image" placeholder='Image' onChange={(e)=>{setNewProduct({...newProduct,image:e.target.value})}} className='form-control p-2' /><br/>
-                        {editFlag ?? (<button onClick={()=>{addNewProd()}} className='btn btn-outline-success'>Add New Product</button>)}
-                        {editFlag && (<button onClick={()=>{updateProduct()}}>Update Product</button>)}
+                        {editFlag ?? (<button onClick={(e)=>{addNewProd(e)}} className='btn btn-outline-success'>Add New Product</button>)}
+                        {editFlag && (<button className='btn btn-outline-primary ' onClick={(e)=>{updateProduct(e)}}>Update Product</button>)}
                     </div>
                     <div>
                         {
@@ -63,12 +66,12 @@ function Products() {
                     </div>
                 </div>
                 {
-                    isLoading && (
+                    !isLoading && (
                         data?.map((product)=>{
                             return  <li className='p-2'>
                                         {product.title}
-                                        <button onClick={()=>{delProd(product.id)}}>Delete</button>
-                                        <button onClick={()=>{editProduct(product)}}>Edit</button>
+                                        <button className='btn btn-outline-danger mx-2'  onClick={()=>{delProd(product.id)}}>Delete</button>
+                                        <button  className='btn btn-outline-warning  '  onClick={()=>{editProduct(product)}}>Edit</button>
                                     </li>
                         })
                     )

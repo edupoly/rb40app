@@ -17,7 +17,7 @@ function Navbar() {
                 </li> */}
                 <li className="nav-item">
                  <Link className="nav-link" to="/counter">Counter</Link>
-                </li>
+                </li> 
                 <li className="nav-item">
                  <Link className="nav-link" to="/todolist">Todolist</Link>
                 </li>
