@@ -1,14 +1,14 @@
-import Counter from "./features/counter/Counter";
-import Products from "./features/products/Products";
-import Todolist from "./features/todolist/Todolist";
+import { Outlet } from "react-router-dom";
+import Navbar from "./features/navbar/Navbar";
+import { useSelector } from "react-redux";
 
 function App() {
+  const {user} = useSelector(state=>state.userR)
   return (
-    <div className="App">
-      <h1>Welcome to Edupoly</h1>
-      <Products></Products>
-      <Todolist></Todolist>
-      <Counter></Counter>
+    <div className="App container">
+      {!user.role && (<Navbar></Navbar>)}
+      
+      <Outlet></Outlet>
     </div>
   );
 }
